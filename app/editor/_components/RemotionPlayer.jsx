@@ -22,22 +22,22 @@ function RemotionPlayer() {
 
   const playerRef = useRef(null);
 
-  useEffect(()=>{
-    if(videoFrame?.selectedFrame){
-        let skipDuration = 0;
-        for(let i=0; i<videoFrame?.selectedFrame; i++){
-            skipDuration = skipDuration + videoFrame.frameList[i].duration;
-        }
-        playerRef?.current?.seekTo(skipDuration*30);
+  useEffect(() => {
+    if (videoFrame?.selectedFrame) {
+      let skipDuration = 0;
+      for (let i = 0; i < videoFrame?.selectedFrame; i++) {
+        skipDuration = skipDuration + videoFrame.frameList[i].duration;
+      }
+      playerRef?.current?.seekTo(skipDuration * 30);
     }
-  }, [videoFrame?.selectedFrame])
+  }, [videoFrame?.selectedFrame]);
 
   return (
     <div>
       <div className="flex items-center justify-center">
-        {videoFrame?.totalDuration && 
+        {videoFrame?.totalDuration && (
           <Player
-          ref={playerRef}
+            ref={playerRef}
             component={RemotionComposition}
             durationInFrames={Number(videoFrame?.totalDuration * 30)}
             compositionWidth={screenSize.width}
@@ -46,14 +46,14 @@ function RemotionPlayer() {
             controls
             style={{
               borderRadius: 6,
-              width: '100%',
-              height: 300
+              width: "100%",
+              height: 300,
             }}
             inputProps={{
               frameList: videoFrame?.frameList,
             }}
           />
-        }
+        )}
       </div>
 
       <div className="mt-5 flex gap-2 items-center px-40">
